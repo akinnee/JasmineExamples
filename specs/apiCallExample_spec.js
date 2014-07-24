@@ -1,13 +1,19 @@
 describe('apiCallExample', function() {
 
-	/*jasmine.getFixtures().fixturesPath = '/';
-	loadFixtures('examples.html');*/
+	var copyApi;
+
+	beforeEach(function() {
+		copyApi = new CopyApi();
+	});
 
 	it('returns a properly configured instance of JsonRpcClient when copyApi.getJsonRpcClient is called', function() {
 
 		var client = copyApi.getJsonRpcClient();
 
+		// check that a real client is returned
 		expect(client instanceof $.JsonRpcClient).toBeTruthy();
+
+		// check that is is configured properly
 		expect(client.options.ajaxUrl).toEqual('https://apiweb.copy.com/jsonrpc');
 		expect(client.options.headers).toEqual({
 			'Accept': 'application/json',
@@ -21,13 +27,36 @@ describe('apiCallExample', function() {
 
 	it('can get the name of a file/dir from the path', function() {
 
-		var path = '/Awesome folder/Less awesome folder/Not that awesome folder/Really uncool file that nobody likes.jpg';
+		var
+		path = '/Awesome folder/Less awesome folder/Not that awesome folder/Really uncool file that nobody likes.jpg',
+		name = copyApi.getNameFromPath(path);
 
-		expect(copyApi.getNameFromPath(path)).toEqual('Really uncool file that nobody likes.jpg');
+		expect(name).toEqual('Really uncool file that nobody likes.jpg');
 
 	});
 
-	it('gets a successful response from list_objects when copyApi.listJsExamplesDirContents is called', function(done) {
+
+	// Using spies
+
+	it('calls copyApi.getJsonRpcClient when copyApi.listJsExamplesDirContents is called', function() {
+
+		// stub the getJsonRpcClient function so that it returns a non-working client
+		copyApi.getJsonRpcClient = function() { return { call: function() {} }; };
+
+		// spy on getJsonRpcClient so we know if it was called, and still make getJsonRpcClient function normally
+		spyOn(copyApi, 'getJsonRpcClient').and.callThrough();
+
+		copyApi.listJsExamplesDirContents();
+
+		// was it called?
+		expect(copyApi.getJsonRpcClient).toHaveBeenCalled();
+
+	});
+
+
+	// Async specs
+
+	xit('gets a successful response from list_objects when copyApi.listJsExamplesDirContents is called', function(done) {
 
 		copyApi.listJsExamplesDirContents(function(dirContents) {
 
@@ -39,7 +68,7 @@ describe('apiCallExample', function() {
 
 	});
 
-	it('gets an error response from list_objects if no auth token is sent', function(done) {
+	xit('gets an error response from list_objects if no auth token is sent', function(done) {
 
 		copyApi.listJsExamplesDirContents(function() {}, function(error) {
 
