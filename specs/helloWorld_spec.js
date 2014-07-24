@@ -13,10 +13,10 @@ describe('helloWorld', function() {
 	 */
 	jasmine.getFixtures().fixturesPath = '/';
 
-	// load the HTML needed for this spec
-	loadFixtures('examples.html');
-
 	it('sets the output element\'s text to "Hello, Barracuda!" when the "Run" button is clicked.', function() {
+
+		// load the HTML needed for this test
+		jasmine.getFixtures().load('examples.html');
 
 		var
 		$runButton = $('[data-action="helloWorld"]'),

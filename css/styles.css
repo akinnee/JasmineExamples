@@ -49,5 +49,6 @@ section .output {
 	width: 70%;
 	min-height: 100px;
 	padding: 30px;
+	margin: 0;
 	background-color: #F8F8F8;
 }
