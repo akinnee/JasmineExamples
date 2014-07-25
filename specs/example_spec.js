@@ -1,6 +1,6 @@
 describe('example specs', function() {
 
-	xit('can create empty spies which know if they have been called', function() {
+	it('can create empty spies which know if they have been called', function() {
 
 		var
 		someSpy,
@@ -11,10 +11,14 @@ describe('example specs', function() {
 		// creating a new spy and setting it to a variable
 		someSpy = jasmine.createSpy('some');
 
+		someSpy('test');
+
 		expect(someSpy).toHaveBeenCalledWith('test');
 
 		// replace an existing method with a spy
 		spyOn(someObject, 'someFunction');
+
+		someObject.someFunction();
 
 		expect(someObject.someFunction).toHaveBeenCalled();
 
@@ -44,8 +48,10 @@ describe('example specs', function() {
 	it('can wait for async behavior to complete', function(done) {
 
 		// do async stuff here
-
-		done();
+		setTimeout(function() {
+			done();
+			
+		}, 100);
 
 	});
 

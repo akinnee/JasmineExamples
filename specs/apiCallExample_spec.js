@@ -56,7 +56,7 @@ describe('apiCallExample', function() {
 
 	// Async specs
 
-	xit('gets a successful response from list_objects when copyApi.listJsExamplesDirContents is called', function(done) {
+	it('gets a successful response from list_objects when copyApi.listJsExamplesDirContents is called', function(done) {
 
 		copyApi.listJsExamplesDirContents(function(dirContents) {
 
@@ -68,7 +68,7 @@ describe('apiCallExample', function() {
 
 	});
 
-	xit('gets an error response from list_objects if no auth token is sent', function(done) {
+	it('gets an error response from list_objects if no auth token is sent', function(done) {
 
 		copyApi.listJsExamplesDirContents(function() {}, function(error) {
 
