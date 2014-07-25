@@ -5,7 +5,7 @@
 *  Run `npm install` within the JasmineExamples project root folder. This will install the local dev dependencies.
 *  Run `grunt`
 
-# NOTES:
+# Notes
 
 Useful links:
 
