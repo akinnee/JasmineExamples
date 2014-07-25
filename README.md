@@ -1,3 +1,12 @@
+# Getting this source code running
+
+*  Install node and the node package manager
+*  Install grunt/grunt-cli globally
+*  Run `npm install` within the JasmineExamples project root folder. This will install the local dev dependencies.
+*  Run `grunt`
+
+# NOTES:
+
 Useful links:
 
 [http://jasmine.github.io/2.0/introduction.html](http://jasmine.github.io/2.0/introduction.html)
